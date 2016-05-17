@@ -1,0 +1,118 @@
+<!-- public/index.html -->
+
+<!DOCTYPE html>
+<html lang="en" ng-app = "myApp">
+<head>
+    <meta charset="UTF-8">
+  
+    <title>LIU</title>
+
+
+    <!--Load Angular JS libraries -->
+    <script src="assets/libs/angular/angular.min.js"></script>
+    <script src="assets/libs/angular-route/angular-route.min.js"></script>
+    <script src="assets/libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+    <!-- ANGULAR CUSTOM -->
+    <script src="app/app.routes.js"></script>
+    <script src="app/app.module.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/libs/bootstrap/dist/css/bootstrap.min.css">
+     
+    <!-- custom styles -->  
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+	<nav class="navbar navbar-default" role="navigation">
+		<!--brand and toggle get grouped for better mobile display-->	
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" ng-init="navCollapsed=true" ng-Click="navCollapsed=!navCollapsed">
+				<span class="sr-only">Toggle Navigation</span>
+				<span class="icon-bar"></span>
+          		<span class="icon-bar"></span>
+          		<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Welcome Visitor</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+
+		<!-- The "in" class determines whether the panel is opened or closed -->
+        <!--Angular expressions do not support the ternary operator, but it can be emulated like this: condition && (answer if true) || (answer if false)-->
+		<div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'||!'in'">
+			<div>      
+		    <ul class="nav navbar-nav">
+		    	<li><a href="#">About Me</a></li>
+		    	<li><a href="#">Pic Gallery</a></li>
+		    	<li uib-dropdown>
+		        	<a href="#" uib-dropdown-toggle>Programing<b class="caret"></b></a>
+				    	<ul uib-dropdown-menu>
+				        	<li><a href="#">Web Development</a></li>
+				      		<li><a href="#">Java Projects</a></li>
+				      		<li><a href="#">.NET Projects</a></li>
+				      		<li><a href="#">Others</a></li>
+				      		
+				    	</ul>
+		      </li>
+		    </ul>
+			</div>
+
+			<div>
+		    <form class="navbar-form navbar-left" role="search">
+		      <div class="form-group">
+		        <input type="text" class="form-control" placeholder="Search">
+		      </div>
+		      <button type="submit" class="btn btn-default">Submit</button>
+		    </form>
+			</div>
+
+
+			<div class="nav navbar-nav navbar-right">
+				<a href="#">Connect with me</a>		    
+		    	<a href="#">register</a> or <a href="#">Sign in</a>
+		    </div>
+			
+      </div><!-- /.navbar-collapse -->
+
+	</nav>
+
+
+	
+
+
+	<div id='main' class="container" ng-controller="PostController">
+    	<div class="col-md-offset-2 col-md-8">
+        	<div class="clearfix">
+          		<form ng-Submit="post()">
+            		<input required type="text" class="form-control" placeholder="Your name" ng-model="newPost.created_by" /> 
+            		<textarea required class="form-control" maxlength="200" rows="3" placeholder="What's on your mind?" ng-model="newPost.text"></textarea>
+            		<input class="btn submit-btn pull-right" type="submit" value="Post" />
+          		</form>
+          <div id="post-stream">
+            <h4>Messages</h4>
+                <!--the 'true' after the filter means it will reverse the orders by 'created_at'-->
+				<!--'odd' and 'even' class will be convinient for later styling-->
+                <div class="post" ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'"> 
+                	<p>{{post.text}}</p>
+                	<small>Posted by @{{post.created_by}}</small>
+                	<small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
+                </div>
+          	</div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+	
+</body>
+</html>

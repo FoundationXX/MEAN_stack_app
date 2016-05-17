@@ -1,0 +1,20 @@
+{
+  "name": "liu-website",
+  "version": "1.0.0",
+  "description": "my first MEAN stack website",
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "*",
+    "express": "*",
+    "express-session": "^1.13.0",
+    "method-override": "*",
+    "mongoose": "*",
+    "morgan": "^1.7.0",
+    "passport": "*",
+    "passport-local": "^1.0.0",
+    "pug": "*"
+  },
+  "author": "Liang Liu",
+  "license": "ISC"
+}
